@@ -6,6 +6,7 @@ import os
 import pickle
 from pathlib import Path
 from typing import Tuple
+import matplotlib.pyplot as plt
 
 
 # TODO: versions of libraries that will be used:
@@ -65,13 +66,13 @@ def project():
     feature_detector_descriptor = cv2.ORB_create(2000)
 
     # TODO: train a vocabulary model and save it using pickle.dump function
-    with Path('/home/michal/studies/ZPO/vocab_model93.p').open('rb') as vocab_file:  # Don't change the path here
+    with Path('/home/michal/studies/ZPO/vocab_model.p').open('rb') as vocab_file:  # Don't change the path here
        vocab_model = pickle.load(vocab_file)
 
     x_transformed = apply_feature_transform(x, feature_detector_descriptor, vocab_model)
 
     # TODO: train a classifier and save it using pickle.dump function
-    with Path('/home/michal/studies/ZPO/clf93.p').open('rb') as classifier_file:  # Don't change the path here
+    with Path('/home/michal/studies/ZPO/clf.p').open('rb') as classifier_file:  # Don't change the path here
         clf = pickle.load(classifier_file)
 
     score = clf.score(x_transformed, y)
