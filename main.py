@@ -1,12 +1,11 @@
-import cv2
-from pathlib import Path
-import numpy as np
 import json
 import os
 import pickle
 from pathlib import Path
 from typing import Tuple
-import matplotlib.pyplot as plt
+
+import cv2
+import numpy as np
 
 
 # TODO: versions of libraries that will be used:
@@ -58,21 +57,21 @@ def project():
     first_name = 'Michał'
     last_name = 'Gontarczyk'
 
-    data_path = Path('/home/michal/studies/ZPO/train')  # You can change the path here
+    data_path = Path('/home/michal/studies/ZPO/train2')  # You can change the path here
     data_path = os.getenv('DATA_PATH', data_path)  # Don't change that line
     x, y = load_dataset(data_path)
 
     # TODO: create a detector/descriptor here. Eg. cv2.AKAZE_create()
-    feature_detector_descriptor = cv2.ORB_create(2000)
+    feature_detector_descriptor = cv2.ORB_create(2500)
 
     # TODO: train a vocabulary model and save it using pickle.dump function
-    with Path('/home/michal/studies/ZPO/vocab_model.p').open('rb') as vocab_file:  # Don't change the path here
+    with Path('vocab_model.p').open('rb') as vocab_file:  # Don't change the path here
        vocab_model = pickle.load(vocab_file)
 
     x_transformed = apply_feature_transform(x, feature_detector_descriptor, vocab_model)
 
     # TODO: train a classifier and save it using pickle.dump function
-    with Path('/home/michal/studies/ZPO/clf.p').open('rb') as classifier_file:  # Don't change the path here
+    with Path('clf.p').open('rb') as classifier_file:  # Don't change the path here
         clf = pickle.load(classifier_file)
 
     score = clf.score(x_transformed, y)
