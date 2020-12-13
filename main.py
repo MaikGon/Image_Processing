@@ -57,7 +57,7 @@ def project():
     first_name = 'Michał'
     last_name = 'Gontarczyk'
 
-    data_path = Path('train')  # You can change the path here
+    data_path = Path('test')  # You can change the path here
     data_path = os.getenv('DATA_PATH', data_path)  # Don't change that line
     x, y = load_dataset(data_path)
 
