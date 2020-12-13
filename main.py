@@ -57,12 +57,12 @@ def project():
     first_name = 'Michał'
     last_name = 'Gontarczyk'
 
-    data_path = Path('/home/michal/studies/ZPO/train2')  # You can change the path here
+    data_path = Path('train')  # You can change the path here
     data_path = os.getenv('DATA_PATH', data_path)  # Don't change that line
     x, y = load_dataset(data_path)
 
     # TODO: create a detector/descriptor here. Eg. cv2.AKAZE_create()
-    feature_detector_descriptor = cv2.ORB_create(2500)
+    feature_detector_descriptor = cv2.ORB_create(5000)
 
     # TODO: train a vocabulary model and save it using pickle.dump function
     with Path('vocab_model.p').open('rb') as vocab_file:  # Don't change the path here
